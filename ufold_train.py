@@ -51,7 +51,7 @@ def train(contact_net,train_merge_generator,epoches_first):
         # num_batches = int(np.ceil(train_data.len / BATCH_SIZE))
         # for i in range(num_batches):
         #for contacts, seq_embeddings, matrix_reps, seq_lens, seq_ori, seq_name in train_generator:
-        for contacts, seq_embeddings, matrix_reps, seq_lens, seq_ori, seq_name in train_merge_generator:
+        for contacts, seq_embeddings, matrix_reps, seq_lens, seq_ori, seq_name in tqdm(train_merge_generator, leave=False):
         #for contacts, seq_embeddings, seq_embeddings_1, matrix_reps, seq_lens, seq_ori, seq_name in train_generator:
             # contacts, seq_embeddings, matrix_reps, seq_lens = next(iter(train_generator))
     
