@@ -26,6 +26,7 @@ from ufold.data_generator import Dataset_Cut_concat_new as Dataset_FCN
 #from ufold.data_generator import Dataset_Cut_concat_new_merge as Dataset_FCN_merge
 from ufold.data_generator import Dataset_Cut_concat_new_merge_multi as Dataset_FCN_merge
 import collections
+import tqdm
 
 
 def train(contact_net,train_merge_generator,epoches_first):
@@ -45,7 +46,7 @@ def train(contact_net,train_merge_generator,epoches_first):
     # There are three steps of training
     # step one: train the u net
     epoch_rec = []
-    for epoch in range(epoches_first):
+    for epoch in tqdm(range(epoches_first)):
         contact_net.train()
         # num_batches = int(np.ceil(train_data.len / BATCH_SIZE))
         # for i in range(num_batches):
@@ -105,7 +106,8 @@ def train(contact_net,train_merge_generator,epoches_first):
             torch.save(contact_net.state_dict(),  f'../ufold_train_{epoch}.pt')
 
 def main():
-    torch.cuda.set_device(1)
+    if torch.cuda.is_available():
+        torch.cuda.set_device(1)
     
     args = get_args()
     

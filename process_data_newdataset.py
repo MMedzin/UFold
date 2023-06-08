@@ -41,6 +41,7 @@ def clean_pair(pair_list,seq):
 if __name__=='__main__':
 
     file_dir = sys.argv[1]+'/'#'BPSeqFiles_PDB/'
+    output_path = sys.argv[2] # output file
     all_files = os.listdir(file_dir)
     random.seed(4)
     random.shuffle(all_files)
@@ -126,4 +127,5 @@ if __name__=='__main__':
     #cPickle.dump(all_files_list,open("/data2/darren/experiment/ufold/data/bpRNA_TrainSetA_128.cPickle","wb"))
     #cPickle.dump(all_files_list,open("/data2/darren/experiment/ufold/data/bpRNA_new20201015.cPickle","wb"))
     #cPickle.dump(all_files_list,open("/data2/darren/experiment/ufold/data/pdb_from_yx_test.cPickle","wb"))
-    cPickle.dump(all_files_list,open("/data2/darren/experiment/ufold/upload_github/datanew/TS0.cPickle","wb"))
+    # cPickle.dump(all_files_list,open("/data2/darren/experiment/ufold/upload_github/datanew/TS0.cPickle","wb"))
+    cPickle.dump(all_files_list,open(output_path, "wb"))
