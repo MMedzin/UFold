@@ -201,9 +201,9 @@ def main():
     
     # contact_net.conv1d2.register_forward_hook(get_activation('conv1d2'))
     
-    #if LOAD_MODEL and os.path.isfile(model_path):
-    #    print('Loading u net model...')
-    #    contact_net.load_state_dict(torch.load(model_path))
+    if LOAD_MODEL and os.path.isfile(model_path):
+       print('Loading u net model...')
+       contact_net.load_state_dict(torch.load(model_path))
     
     
     
