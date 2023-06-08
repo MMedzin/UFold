@@ -67,6 +67,7 @@ def get_args():
         help='training file name list.')
     argparser.add_argument('--test_files', required=False,nargs='?',default='ArchiveII',choices=['ArchiveII','TS0','bpnew','TS1','TS2','TS3'],
         help='test file name')
+    argparser.add_argument("--model_pt_tag", required=False, type=str, default="ufold_train")
     args = argparser.parse_args()
     return args
 

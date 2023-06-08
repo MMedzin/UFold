@@ -29,7 +29,7 @@ import collections
 from tqdm.auto import tqdm
 
 
-def train(contact_net,train_merge_generator,epoches_first):
+def train(contact_net,train_merge_generator,epoches_first, model_pt_tag="ufold_train"):
     epoch = 0
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     pos_weight = torch.Tensor([300]).to(device)
@@ -105,7 +105,7 @@ def train(contact_net,train_merge_generator,epoches_first):
                 #torch.save(contact_net.state_dict(),  f'models_ckpt/final_model/unet_train_on_RNAlign_restart_{epoch}.pt')
                 #torch.save(contact_net.state_dict(),  f'models_ckpt/final_model/unet_train_on_merge_alldata_{epoch}.pt')
                 #torch.save(contact_net.state_dict(),  f'models_ckpt/final_model/unet_train_on_TR0bpnewOriuseMXUnet_{epoch}.pt')
-            torch.save(contact_net.state_dict(),  f'../ufold_train_{epoch}.pt')
+            torch.save(contact_net.state_dict(),  f'../{model_pt_tag}_{epoch}.pt')
 
 def main():
     if torch.cuda.is_available():
@@ -135,7 +135,7 @@ def main():
     epoches_first = config.epoches_first
 
     train_files = args.train_files
-    
+    model_pt_tag = args.model_pt_tag
     
     # if gpu is to be used
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -211,7 +211,7 @@ def main():
     # pos_weight = torch.Tensor([100]).to(device)
     # for length as 600
 
-    train(contact_net,train_merge_generator,epoches_first)
+    train(contact_net,train_merge_generator,epoches_first, model_pt_tag=model_pt_tag)
 
         
 
