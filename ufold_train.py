@@ -26,7 +26,7 @@ from ufold.data_generator import Dataset_Cut_concat_new as Dataset_FCN
 #from ufold.data_generator import Dataset_Cut_concat_new_merge as Dataset_FCN_merge
 from ufold.data_generator import Dataset_Cut_concat_new_merge_multi as Dataset_FCN_merge
 import collections
-import tqdm
+from tqdm.auto import tqdm
 
 
 def train(contact_net,train_merge_generator,epoches_first):
@@ -107,7 +107,7 @@ def train(contact_net,train_merge_generator,epoches_first):
 
 def main():
     if torch.cuda.is_available():
-        torch.cuda.set_device(1)
+        torch.cuda.set_device('cuda:0')
     
     args = get_args()
     
@@ -148,7 +148,7 @@ def main():
     train_data_list = []
     for file_item in train_files:
         print('Loading dataset: ',file_item)
-        if file_item == 'RNAStralign' or file_item == 'ArchiveII':
+        if file_item == 'RNAStralign': # or file_item == 'ArchiveII':
             train_data_list.append(RNASSDataGenerator('data/',file_item+'.pickle'))
         else:
             train_data_list.append(RNASSDataGenerator('data/',file_item+'.cPickle'))
